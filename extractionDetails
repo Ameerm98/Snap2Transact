@@ -1,0 +1,38 @@
+{
+    "extractionDetails": {
+        "name": "Transaction - Extraction",
+        "language": "English",
+        "fields": [
+            {
+                "key": "amount",
+                "example": "25"
+            },
+            {
+                "key": "bank_name",
+                "example": "WASHINGTON'S OLDEST NATIONAL BANK FIRST NATIONAL BANK"
+            },
+            {
+                "key": "date",
+                "example": "2019-10-13"
+            },
+            {
+                "key": "payer_name",
+                "example": "HON. GERALD R. FORD MRS. BETTY B. FORD"
+            },
+            {
+                "key": "receiver_name",
+                "example": "Presiding Bishop, Episcopal Church"
+            },
+            {
+                "key": "currency",
+                "example": "USD",
+                "description": "currency as string, not symbol"
+            },
+            {
+                "key": "account_number",
+                "example": "6111611",
+                "description": "Part of the MICR line, typically at the end."
+            }
+        ]
+    }
+}
