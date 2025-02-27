@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class FireflyAPIService {
 
-    private static final String API_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNWY3ZDVmMjAxMTZlOTE0NGQxYjY5NzUwNGVkYzAwMTI4YjM1ODA1ZWE2MzliY2JjYWUyZTY4MjY1NjBlMjM3ZTZmY2VlZjBlNDVjMjRiZTQiLCJpYXQiOjE3NDA0MjAwNTkuOTgyNDk2LCJuYmYiOjE3NDA0MjAwNTkuOTgyNDk4LCJleHAiOjE3NzE5NTYwNTkuOTEwMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.OmUxzwaFTK_Cn01gYZTMqprXPQDMM32ebQBgdYx4U5jRWig6_oO_d3Qhn-VAY8tNpa5gMlgwNW4CpCAmYykVOXu-Z6aDagsou_k42sYHImE4aBIB3pLb1GOXZDapCeoaguADb4waWdPmuIn90y7xZqJNZjhmrTLrk89M3jT0FiKCGpGs6IDUbkSmY7y5NRfpE6ZTaRnl2dCIH8p6XAfNSeZjLP2RF6-e6UdUple-wcPlseDrMpDVRXWnV4q5zbc2BXZqWAE20QF_drAV0ZAzuQSs1Y0eLnaQLxrzPpQQHOW26lMmIG68FxqPvXpvVth0rmyMfjGV2hP6dbFuDT8k-ORqxT2K1rjjrkFj2O5jm4pyArxvbsW4GSIDK74DkxwhkYREKRAOaFQwbfEMSj33N7pmwTRSrvU0S0vr14hsx618hOmVNrhsqIm5jmZ693AQLb_JvuMOwppA_6waQd6QAVEEIFQxzi9aN2k_BlBK_rclCgXTU1LTZ5TeCNtQ5TPsQUHxAbUNlayOWuTTXDh9wdjaauy_mIgGrhg1geKlFA0PF_mpThcjM4AUmKhGtYXwP9HUCEC1bIh00Hoj_RMBp5N5neqMnHiRboolUNScJI-FJeU6SEnirnBWzkBvADeLaMDPLM92sA_plJ1uXba9k4qgy5iyotjGNmjyxepUaHI";
-    private static final String BASE_URL = "http://localhost:80/api/v1/";
+    private static final String API_KEY ="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiN2QwYmM3OTE4OGI0OTU5ODE1MWZmYjdmOGYzMWIxYmYxOTVkZTcwZjA3MDczODliOWE5NjNmY2MxYjQ3MjIxZGU2MTFjNWE3NmNlMzZmNzIiLCJpYXQiOjE3NDA2NDA2OTIuODI4MDYyLCJuYmYiOjE3NDA2NDA2OTIuODI4MDY1LCJleHAiOjE3NzIxNzY2OTIuNjMyMzM1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.j9-AljTOuI3Xrz2MEVw7ZSmXdhFljN0Y2LAkko-c7BZ0AxEUZecRxNpRQnFQvEf_6vSzegAN4Tcdd13c4thAyQt7n9DNylIwREPM8xj5qGPVvhnwiuh3EvLxz2B4mcZpzVlMCD_Ir5ritH7KtXnfQqsblaxKfrjxSIOHccfv0sc1cHMlq2Bscq5AG7mOMsgaLVEtIBWO7r1yqdJhuCrn52UyhntVpI0sKV-BVHa_zLBW8H9Q3ChYu0G6SdKQLf4VfQKLrjamNV0Cbsxda4PoCC1TDvz-qpBLLQbJuIM6yYLLXAKSgPPWPpwPh3VmDBCkc_NbRwOTS8SqliBHHssFrfgHx2YqPdnlVUEETpybu6xs_4pw2B0KY5flVng0ujxJo7yxfsAOAlLHX-q7WA-doR_pC_3iU2sBtkfkjXs_g3mddxVZivI3PyMlDJjNkHwNQ5McU5GdLsON13kAwMB0QIdeYGiWOdcFnOvsvRifcZKRemUDjj1b3KMubesA_9cqI-WlAVd47csJwmpOkFigrwW2FaCAK4nffYEaU61tItYouPkWLDRgVUZIhpP6gITpw4Z9FfQm1NxZQ_rZOtWzHRqDyCWv44O1vIBoLVW66TUlZH0-pDmXPKoEHsVrpr1bE4aRwDSQ1E3G8eu0pLBXmgEVDpokAgPVyNZXgjpluvA";
+    private static final String BASE_URL = "https://7c5a-2a06-c701-497e-fb00-f902-1d42-f6fb-f91a.ngrok-free.app/api/v1/";
     private final ObjectMapper objectMapper = new ObjectMapper();
     HttpRequest.Builder requestBody = HttpRequest.newBuilder()
             .uri(URI.create(BASE_URL))
@@ -26,10 +26,16 @@ public class FireflyAPIService {
 
 
     public ResponseEntity<Integer> createAccount(String jsonBody) throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = requestBody.uri(URI.create(BASE_URL+"accounts")).method("POST", HttpRequest.BodyPublishers.ofString(jsonBody)).build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return new ResponseEntity<>(response.statusCode(), HttpStatus.CREATED);
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = requestBody.uri(URI.create(BASE_URL+"accounts")).method("POST", HttpRequest.BodyPublishers.ofString(jsonBody)).build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            return new ResponseEntity<>(response.statusCode(), HttpStatus.CREATED);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
     public ResponseEntity<Integer> storeTransaction(String jsonBody) throws IOException, InterruptedException {
