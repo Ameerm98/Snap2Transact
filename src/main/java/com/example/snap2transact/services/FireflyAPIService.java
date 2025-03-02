@@ -25,12 +25,12 @@ public class FireflyAPIService {
 
 
 
-    public ResponseEntity<Integer> createAccount(String jsonBody) throws IOException, InterruptedException {
+    public ResponseEntity<HttpResponse<String>> createAccount(String jsonBody) throws IOException, InterruptedException {
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = requestBody.uri(URI.create(BASE_URL+"accounts")).method("POST", HttpRequest.BodyPublishers.ofString(jsonBody)).build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            return new ResponseEntity<>(response.statusCode(), HttpStatus.CREATED);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -38,13 +38,12 @@ public class FireflyAPIService {
 
     }
 
-    public ResponseEntity<Integer> storeTransaction(String jsonBody) throws IOException, InterruptedException {
+    public ResponseEntity<HttpResponse<String>> storeTransaction(String jsonBody) throws IOException, InterruptedException {
         try {
-            System.out.println(jsonBody);
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = requestBody.uri(URI.create(BASE_URL+"transactions")).method("POST", HttpRequest.BodyPublishers.ofString(jsonBody)).build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            return new ResponseEntity<>(response.statusCode(), HttpStatus.CREATED);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
         }catch (Exception e){
             e.printStackTrace();
         }

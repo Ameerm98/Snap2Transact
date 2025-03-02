@@ -32,6 +32,9 @@ public class HomePageTest {
         driver.get("http://localhost:9090");
         String pageTitle = driver.getTitle();  // Get title directly
         Assertions.assertEquals("Receipt Upload", pageTitle);
+        WebElement dataExtract = driver.findElement(By.cssSelector("p.text-gray-600.text-center"));
+        Assertions.assertEquals("Extracted data will appear here...", dataExtract.getText());
+
     }
 
     @AfterEach
