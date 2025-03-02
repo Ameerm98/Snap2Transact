@@ -1,4 +1,5 @@
 package integration.UI;
+import com.example.snap2transact.DriverFactory;
 import com.example.snap2transact.Snap2TransactApplication;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -18,9 +19,7 @@ public class HomePageTest {
     @BeforeEach
     public void setUp() {
         // Set up ChromeDriver using WebDriverManager
-        driver = new ChromeDriver();
-
-        // Configure WebDriver
+        driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
