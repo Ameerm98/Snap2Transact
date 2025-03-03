@@ -70,10 +70,10 @@ public class UploadController {
 
 
     @PostMapping("/upload-normal")
-    public ResponseEntity<JsonNode> uploadNormalTransaction(@RequestParam("file") MultipartFile file) throws IOException, InterruptedException {
+    public ResponseEntity<JsonNode> uploadNormalTransaction(@RequestParam("file") MultipartFile img) throws IOException, InterruptedException {
 
-    //     JsonNode extraction = extractaAPIService.createExtraction(normalTransactionExtractionDetailsJson);
-     //   JsonNode response =  extractaAPIService.uploadFiles("OJIEFnCmn4cgbtgJdCg"/*extraction.get("extractionId").asText()*/,file);
+         JsonNode extraction = extractaAPIService.createExtraction(normalTransactionExtractionDetailsJson);
+         JsonNode response =  extractaAPIService.uploadFiles("OJIEFnCmn4cgbtgJdCg"/*extraction.get("extractionId").asText()*/,img);
 
         JsonNode result = extractaAPIService.getBatchResults("-OJDc9njfsJ1-6ZWU6_J"/*extraction.get("extractionId").asText()*/,/*response.get("batchId").asText()*/"J7MXFTMYx1");
 
@@ -88,6 +88,7 @@ public class UploadController {
 
         return ResponseEntity.ok(result.path("files").get(0).path("result"));
     }
+
 
     @PostMapping("/upload-paystub")
     public ResponseEntity<JsonNode> uploadPayStub(@RequestParam("file") MultipartFile file) throws IOException, InterruptedException {
